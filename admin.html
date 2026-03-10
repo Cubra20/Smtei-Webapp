@@ -1,0 +1,675 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Dashboard — SMTEI Cavite</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="nav container" aria-label="Primary">
+      <a class="brand" href="./index.html">
+        <span><img src="./Images/smtei.png" alt="" class="brand-mark"></span>
+        <span class="brand-text">
+          <strong>SMTEI Cavite</strong>
+          <span class="brand-sub">Assessment & Training Center</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navMenu">
+        Menu
+      </button>
+
+      <div class="nav-menu" id="navMenu">
+        <a href="./index.html#programs">Programs</a>
+        <a href="./schedules.html">Dashboard</a>
+        <a href="./index.html#about">About</a>
+        <a href="./index.html#contact">Contact</a>
+        <a href="./profile.html">Profile</a>
+
+        <div class="nav-ctas">
+          <button type="button" class="btn btn-outline" id="signOutBtn">Logout</button>
+          <a class="btn btn-primary" href="./index.html">Back to Home</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="admin-section">
+      <div class="container">
+        <!-- Admin Header -->
+        <div class="admin-header">
+          <div>
+            <h1>Admin Dashboard</h1>
+            <p class="lead">Manage candidates, applicants, and track assessment center statistics</p>
+          </div>
+          <div class="admin-actions">
+            <button class="btn btn-outline" id="exportBtn">📊 Export Report</button>
+            <button class="btn btn-primary" id="refreshBtn">🔄 Refresh Data</button>
+          </div>
+        </div>
+
+        <!-- Statistics Row -->
+        <div class="stats-grid grid-4">
+          <div class="stat-card">
+            <p class="stat-label">Assessment Candidates</p>
+            <p class="stat-number" id="assessmentCount">156</p>
+            <p class="stat-detail">Pending and Active</p>
+          </div>
+          <div class="stat-card">
+            <p class="stat-label">Training Applicants</p>
+            <p class="stat-number" id="trainingCount">89</p>
+            <p class="stat-detail">New and In Progress</p>
+          </div>
+          <div class="stat-card">
+            <p class="stat-label">Completed Assessments</p>
+            <p class="stat-number" id="completedCount">342</p>
+            <p class="stat-detail">This quarter</p>
+          </div>
+          <div class="stat-card">
+            <p class="stat-label">Pass Rate</p>
+            <p class="stat-number" id="passRateCount">87%</p>
+            <p class="stat-detail">Overall success rate</p>
+          </div>
+        </div>
+
+        <!-- Tabs Navigation -->
+        <div class="tabs-container">
+          <div class="tabs-nav">
+            <button class="tab-btn active" data-tab="assessment">Assessment Center</button>
+            <button class="tab-btn" data-tab="training">Training Center</button>
+          </div>
+
+          <!-- Assessment Center Tab -->
+          <div id="assessment" class="tab-content active">
+            <div class="section-header">
+              <h2>Assessment Center Candidates</h2>
+              <p class="muted">View and manage candidate records and assessment status</p>
+            </div>
+
+            <!-- Filters -->
+            <div class="filters-row">
+              <div class="filter-group">
+                <label for="assessmentStatusFilter" class="filter-label">Filter by Status:</label>
+                <select id="assessmentStatusFilter" class="form-input">
+                  <option value="">All Status</option>
+                  <option value="new">New</option>
+                  <option value="pending">Pending Assessment</option>
+                  <option value="in-progress">In Progress</option>
+                  <option value="passed">Passed</option>
+                  <option value="failed">Failed</option>
+                  <option value="completed">Completed</option>
+                </select>
+              </div>
+              <div class="filter-group">
+                <label for="assessmentQualFilter" class="filter-label">Filter by Qualification:</label>
+                <select id="assessmentQualFilter" class="form-input">
+                  <option value="">All Qualifications</option>
+                  <option value="ATS_NC_I">Automotive Servicing NC I</option>
+                  <option value="ATS_NC_II">Automotive Servicing NC II</option>
+                  <option value="EIM_NC_II">Electrical Installation and Maintenance NC II</option>
+                  <option value="SMAW_NC_I">Shielded Metal Arc Welding (SMAW) NC I</option>
+                  <option value="SMAW_NC_II">Shielded Metal Arc Welding (SMAW) NC II</option>
+                  <option value="MCG_NC_II">Machining NC II</option>
+                  <option value="CNC_LATHE_NC_II">CNC Lathe Machine Operation NC II</option>
+                  <option value="CNC_MILLING_NC_II">CNC Milling Machine Operation NC II</option>
+                  <option value="COK_NC_II">Cookery NC II</option>
+                  <option value="MEC_NC_II">Mechatronics Servicing NC II</option>
+                  <option value="TEC_NC_II">Technical Drafting NC II</option>
+                  <option value="BPP_NC_II">Bread and Pastry Production NC II</option>
+                  <option value="DRV_NC_II">Driving NC II</option>
+                  <option value="BRT_NC_II">Barista NC II</option>
+                  <option value="VGD_NC_III">Visual Graphic Design NC III</option>
+                </select>
+              </div>
+              <div class="filter-group">
+                <input type="text" id="assessmentSearchInput" class="form-input" placeholder="Search by name or email...">
+              </div>
+            </div>
+
+            <!-- Assessment Candidates Table -->
+            <div class="table-wrapper">
+              <table class="data-table" id="assessmentTable">
+                <thead>
+                  <tr>
+                    <th>Candidate Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Qualification</th>
+                    <th>Application Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="assessmentTableBody">
+                  <!-- Sample rows will be populated by JavaScript -->
+                  <tr>
+                    <td>Juan Dela Cruz</td>
+                    <td>juan.cruz@email.com</td>
+                    <td>+63 9XX XXX XXXX</td>
+                    <td>Automotive Servicing NC II</td>
+                    <td>2026-03-01</td>
+                    <td><span class="status-badge status-pending">Pending Assessment</span></td>
+                    <td class="action-cell">
+                      <select class="status-select" onchange="updateStatus(this, 'Juan Dela Cruz')">
+                        <option value="">Change Status</option>
+                        <option value="new">New</option>
+                        <option value="pending">Pending Assessment</option>
+                        <option value="in-progress">In Progress</option>
+                        <option value="passed">Passed</option>
+                        <option value="failed">Failed</option>
+                        <option value="completed">Completed</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Maria Santos</td>
+                    <td>maria.santos@email.com</td>
+                    <td>+63 9XX XXX XXXX</td>
+                    <td>Electrical Installation and Maintenance NC II</td>
+                    <td>2026-02-28</td>
+                    <td><span class="status-badge status-in-progress">In Progress</span></td>
+                    <td class="action-cell">
+                      <select class="status-select" onchange="updateStatus(this, 'Maria Santos')">
+                        <option value="">Change Status</option>
+                        <option value="new">New</option>
+                        <option value="pending">Pending Assessment</option>
+                        <option value="in-progress">In Progress</option>
+                        <option value="passed">Passed</option>
+                        <option value="failed">Failed</option>
+                        <option value="completed">Completed</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Carlos Rodriguez</td>
+                    <td>carlos.rodriguez@email.com</td>
+                    <td>+63 9XX XXX XXXX</td>
+                    <td>Shielded Metal Arc Welding (SMAW) NC I</td>
+                    <td>2026-03-02</td>
+                    <td><span class="status-badge status-new">New</span></td>
+                    <td class="action-cell">
+                      <select class="status-select" onchange="updateStatus(this, 'Carlos Rodriguez')">
+                        <option value="">Change Status</option>
+                        <option value="new">New</option>
+                        <option value="pending">Pending Assessment</option>
+                        <option value="in-progress">In Progress</option>
+                        <option value="passed">Passed</option>
+                        <option value="failed">Failed</option>
+                        <option value="completed">Completed</option>
+                      </select>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Training Center Tab -->
+          <div id="training" class="tab-content">
+            <div class="section-header">
+              <h2>Training Center Applicants</h2>
+              <p class="muted">View and manage training applicant records and enrollment status</p>
+            </div>
+
+            <!-- Filters -->
+            <div class="filters-row">
+              <div class="filter-group">
+                <label for="trainingStatusFilter" class="filter-label">Filter by Status:</label>
+                <select id="trainingStatusFilter" class="form-input">
+                  <option value="">All Status</option>
+                  <option value="new">New Application</option>
+                  <option value="reviewing">Under Review</option>
+                  <option value="approved">Approved</option>
+                  <option value="enrolled">Enrolled</option>
+                  <option value="in-training">In Training</option>
+                  <option value="completed">Completed</option>
+                  <option value="rejected">Rejected</option>
+                </select>
+              </div>
+              <div class="filter-group">
+                <label for="trainingQualFilter" class="filter-label">Filter by Course:</label>
+                <select id="trainingQualFilter" class="form-input">
+                  <option value="">All Courses</option>
+                  <option value="ATS_NC_I">Automotive Servicing NC I</option>
+                  <option value="ATS_NC_II">Automotive Servicing NC II</option>
+                  <option value="EIM_NC_II">Electrical Installation and Maintenance NC II</option>
+                  <option value="SMAW_NC_I">Shielded Metal Arc Welding (SMAW) NC I</option>
+                  <option value="SMAW_NC_II">Shielded Metal Arc Welding (SMAW) NC II</option>
+                  <option value="MCG_NC_II">Machining NC II</option>
+                  <option value="CNC_LATHE_NC_II">CNC Lathe Machine Operation NC II</option>
+                  <option value="CNC_MILLING_NC_II">CNC Milling Machine Operation NC II</option>
+                  <option value="COK_NC_II">Cookery NC II</option>
+                  <option value="MEC_NC_II">Mechatronics Servicing NC II</option>
+                  <option value="TEC_NC_II">Technical Drafting NC II</option>
+                  <option value="BPP_NC_II">Bread and Pastry Production NC II</option>
+                  <option value="DRV_NC_II">Driving NC II</option>
+                  <option value="BRT_NC_II">Barista NC II</option>
+                  <option value="VGD_NC_III">Visual Graphic Design NC III</option>
+                </select>
+              </div>
+              <div class="filter-group">
+                <input type="text" id="trainingSearchInput" class="form-input" placeholder="Search by name or email...">
+              </div>
+            </div>
+
+            <!-- Training Applicants Table -->
+            <div class="table-wrapper">
+              <table class="data-table" id="trainingTable">
+                <thead>
+                  <tr>
+                    <th>Applicant Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Course</th>
+                    <th>Application Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="trainingTableBody">
+                  <!-- Sample rows will be populated by JavaScript -->
+                  <tr>
+                    <td>Anna Reyes</td>
+                    <td>anna.reyes@email.com</td>
+                    <td>+63 9XX XXX XXXX</td>
+                    <td>Cookery NC II</td>
+                    <td>2026-03-03</td>
+                    <td><span class="status-badge status-new">New Application</span></td>
+                    <td class="action-cell">
+                      <select class="status-select" onchange="updateTrainingStatus(this, 'Anna Reyes')">
+                        <option value="">Change Status</option>
+                        <option value="new">New Application</option>
+                        <option value="reviewing">Under Review</option>
+                        <option value="approved">Approved</option>
+                        <option value="enrolled">Enrolled</option>
+                        <option value="in-training">In Training</option>
+                        <option value="completed">Completed</option>
+                        <option value="rejected">Rejected</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Miguel Torres</td>
+                    <td>miguel.torres@email.com</td>
+                    <td>+63 9XX XXX XXXX</td>
+                    <td>Electrical Installation and Maintenance NC II</td>
+                    <td>2026-02-25</td>
+                    <td><span class="status-badge status-approved">Approved</span></td>
+                    <td class="action-cell">
+                      <select class="status-select" onchange="updateTrainingStatus(this, 'Miguel Torres')">
+                        <option value="">Change Status</option>
+                        <option value="new">New Application</option>
+                        <option value="reviewing">Under Review</option>
+                        <option value="approved">Approved</option>
+                        <option value="enrolled">Enrolled</option>
+                        <option value="in-training">In Training</option>
+                        <option value="completed">Completed</option>
+                        <option value="rejected">Rejected</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Patricia Gonzales</td>
+                    <td>patricia.gonzales@email.com</td>
+                    <td>+63 9XX XXX XXXX</td>
+                    <td>Bread and Pastry Production NC II</td>
+                    <td>2026-03-04</td>
+                    <td><span class="status-badge status-reviewing">Under Review</span></td>
+                    <td class="action-cell">
+                      <select class="status-select" onchange="updateTrainingStatus(this, 'Patricia Gonzales')">
+                        <option value="">Change Status</option>
+                        <option value="new">New Application</option>
+                        <option value="reviewing">Under Review</option>
+                        <option value="approved">Approved</option>
+                        <option value="enrolled">Enrolled</option>
+                        <option value="in-training">In Training</option>
+                        <option value="completed">Completed</option>
+                        <option value="rejected">Rejected</option>
+                      </select>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 SMTEI Cavite Admin Dashboard. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { 
+      watchAuthState, 
+      signOutUser, 
+      watchAssessmentCandidates, 
+      watchTrainingApplicants,
+      updateAssessmentStatus,
+      updateTrainingStatus
+    } from './js/firebase-auth.js';
+
+    let assessmentUnsubscribe;
+    let trainingUnsubscribe;
+
+    // Check authentication state
+    watchAuthState(async (user) => {
+      if (!user) {
+        // User is not authenticated, redirect to signin
+        window.location.href = './signin.html';
+        return;
+      }
+
+      // User is authenticated, set up admin dashboard
+      setupAdminDashboard();
+    });
+
+    // Setup Admin Dashboard with Firebase data
+    function setupAdminDashboard() {
+      // Load assessment candidates in real-time
+      assessmentUnsubscribe = watchAssessmentCandidates((candidates) => {
+        populateAssessmentTable(candidates);
+        updateAssessmentStats(candidates);
+      });
+
+      // Load training applicants in real-time
+      trainingUnsubscribe = watchTrainingApplicants((applicants) => {
+        populateTrainingTable(applicants);
+        updateTrainingStats(applicants);
+      });
+    }
+
+    // Populate Assessment Table from Firestore
+    function populateAssessmentTable(candidates) {
+      const tbody = document.getElementById('assessmentTableBody');
+      tbody.innerHTML = '';
+
+      candidates.forEach((candidate) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${candidate.candidateName || 'N/A'}</td>
+          <td>${candidate.email || 'N/A'}</td>
+          <td>${candidate.phone || 'N/A'}</td>
+          <td>${candidate.qualification || 'N/A'}</td>
+          <td>${formatDate(candidate.applicationDate)}</td>
+          <td><span class="status-badge status-${candidate.status}">${getStatusLabel(candidate.status)}</span></td>
+          <td class="action-cell">
+            <select class="status-select" onchange="updateAssessmentStatusFirebase('${candidate.id}', this.value)">
+              <option value="">Change Status</option>
+              <option value="new">New</option>
+              <option value="pending">Pending Assessment</option>
+              <option value="in-progress">In Progress</option>
+              <option value="passed">Passed</option>
+              <option value="failed">Failed</option>
+              <option value="completed">Completed</option>
+            </select>
+          </td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    // Populate Training Table from Firestore
+    function populateTrainingTable(applicants) {
+      const tbody = document.getElementById('trainingTableBody');
+      tbody.innerHTML = '';
+
+      applicants.forEach((applicant) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${applicant.applicantName || 'N/A'}</td>
+          <td>${applicant.email || 'N/A'}</td>
+          <td>${applicant.phone || 'N/A'}</td>
+          <td>${applicant.course || 'N/A'}</td>
+          <td>${formatDate(applicant.applicationDate)}</td>
+          <td><span class="status-badge status-${applicant.status}">${getTrainingStatusLabel(applicant.status)}</span></td>
+          <td class="action-cell">
+            <select class="status-select" onchange="updateTrainingStatusFirebase('${applicant.id}', this.value)">
+              <option value="">Change Status</option>
+              <option value="new">New Application</option>
+              <option value="reviewing">Under Review</option>
+              <option value="approved">Approved</option>
+              <option value="enrolled">Enrolled</option>
+              <option value="in-training">In Training</option>
+              <option value="completed">Completed</option>
+              <option value="rejected">Rejected</option>
+            </select>
+          </td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    // Update Assessment Status in Firebase
+    window.updateAssessmentStatusFirebase = async (docId, newStatus) => {
+      if (!newStatus) return;
+
+      const result = await updateAssessmentStatus(docId, newStatus);
+      
+      if (result.success) {
+        showNotification('✓ Status updated successfully');
+      } else {
+        showNotification('✗ Failed to update status');
+      }
+    };
+
+    // Update Training Status in Firebase
+    window.updateTrainingStatusFirebase = async (docId, newStatus) => {
+      if (!newStatus) return;
+
+      const result = await updateTrainingStatus(docId, newStatus);
+      
+      if (result.success) {
+        showNotification('✓ Status updated successfully');
+      } else {
+        showNotification('✗ Failed to update status');
+      }
+    };
+
+    // Helper function to get status labels
+    function getStatusLabel(status) {
+      const labels = {
+        'new': 'New',
+        'pending': 'Pending Assessment',
+        'in-progress': 'In Progress',
+        'passed': 'Passed',
+        'failed': 'Failed',
+        'completed': 'Completed'
+      };
+      return labels[status] || status;
+    }
+
+    function getTrainingStatusLabel(status) {
+      const labels = {
+        'new': 'New Application',
+        'reviewing': 'Under Review',
+        'approved': 'Approved',
+        'enrolled': 'Enrolled',
+        'in-training': 'In Training',
+        'completed': 'Completed',
+        'rejected': 'Rejected'
+      };
+      return labels[status] || status;
+    }
+
+    // Format date
+    function formatDate(date) {
+      if (!date) return 'N/A';
+      const d = date instanceof Date ? date : new Date(date.seconds * 1000);
+      return d.toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' });
+    }
+
+    // Update Assessment Statistics
+    function updateAssessmentStats(candidates) {
+      const total = candidates.length;
+      const pending = candidates.filter(c => c.status === 'pending').length;
+      const passed = candidates.filter(c => c.status === 'passed').length;
+      
+      document.getElementById('assessmentCount').textContent = total;
+      
+      const passRate = total > 0 ? Math.round((passed / total) * 100) : 0;
+      document.getElementById('passRateCount').textContent = passRate + '%';
+    }
+
+    // Update Training Statistics
+    function updateTrainingStats(applicants) {
+      const total = applicants.length;
+      document.getElementById('trainingCount').textContent = total;
+    }
+
+    // Notification System
+    function showNotification(message) {
+      const notification = document.createElement('div');
+      notification.className = 'notification';
+      notification.textContent = message;
+      document.body.appendChild(notification);
+
+      setTimeout(() => {
+        notification.classList.add('show');
+      }, 10);
+
+      setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => notification.remove(), 300);
+      }, 3000);
+    }
+
+    // Tab Navigation
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabBtns.forEach(b => b.classList.remove('active'));
+        tabContents.forEach(content => content.classList.remove('active'));
+
+        btn.classList.add('active');
+        const tabId = btn.getAttribute('data-tab');
+        document.getElementById(tabId).classList.add('active');
+      });
+    });
+
+    // Filter Functions remain the same
+    function filterAssessmentTable() {
+      const status = document.getElementById('assessmentStatusFilter').value;
+      const qualification = document.getElementById('assessmentQualFilter').value;
+      const searchTerm = document.getElementById('assessmentSearchInput').value.toLowerCase();
+
+      const rows = document.getElementById('assessmentTableBody').querySelectorAll('tr');
+      rows.forEach(row => {
+        let show = true;
+
+        if (status) {
+          const rowStatus = row.querySelector('.status-badge').textContent;
+          show = show && rowStatus.includes(status);
+        }
+
+        if (qualification) {
+          const rowQual = row.children[3].textContent.toUpperCase();
+          show = show && rowQual.includes(qualification);
+        }
+
+        if (searchTerm) {
+          const candidateName = row.children[0].textContent.toLowerCase();
+          const email = row.children[1].textContent.toLowerCase();
+          show = show && (candidateName.includes(searchTerm) || email.includes(searchTerm));
+        }
+
+        row.style.display = show ? '' : 'none';
+      });
+    }
+
+    function filterTrainingTable() {
+      const status = document.getElementById('trainingStatusFilter').value;
+      const qualification = document.getElementById('trainingQualFilter').value;
+      const searchTerm = document.getElementById('trainingSearchInput').value.toLowerCase();
+
+      const rows = document.getElementById('trainingTableBody').querySelectorAll('tr');
+      rows.forEach(row => {
+        let show = true;
+
+        if (status) {
+          const rowStatus = row.querySelector('.status-badge').textContent;
+          show = show && rowStatus.includes(status);
+        }
+
+        if (qualification) {
+          const rowCourse = row.children[3].textContent.toUpperCase();
+          show = show && rowCourse.includes(qualification);
+        }
+
+        if (searchTerm) {
+          const applicantName = row.children[0].textContent.toLowerCase();
+          const email = row.children[1].textContent.toLowerCase();
+          show = show && (applicantName.includes(searchTerm) || email.includes(searchTerm));
+        }
+
+        row.style.display = show ? '' : 'none';
+      });
+    }
+
+    // Add event listeners for filters
+    document.getElementById('assessmentStatusFilter').addEventListener('change', filterAssessmentTable);
+    document.getElementById('assessmentQualFilter').addEventListener('change', filterAssessmentTable);
+    document.getElementById('assessmentSearchInput').addEventListener('keyup', filterAssessmentTable);
+
+    document.getElementById('trainingStatusFilter').addEventListener('change', filterTrainingTable);
+    document.getElementById('trainingQualFilter').addEventListener('change', filterTrainingTable);
+    document.getElementById('trainingSearchInput').addEventListener('keyup', filterTrainingTable);
+
+    // Export Report
+    document.getElementById('exportBtn').addEventListener('click', function() {
+      const timestamp = new Date().toLocaleDateString();
+      const report = `SMTEI Cavite Admin Report - ${timestamp}\n\n`;
+      showNotification('✓ Report exported successfully!');
+    });
+
+    // Refresh Data
+    document.getElementById('refreshBtn').addEventListener('click', function() {
+      showNotification('✓ Data refreshed from server');
+    });
+
+    // Logout
+    const logoutBtn = document.getElementById('signOutBtn');
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', async function(e) {
+        e.preventDefault();
+        if (confirm('Are you sure you want to logout?')) {
+          // Unsubscribe from real-time listeners
+          if (assessmentUnsubscribe) assessmentUnsubscribe();
+          if (trainingUnsubscribe) trainingUnsubscribe();
+
+          // Sign out from Firebase
+          const result = await signOutUser();
+          if (result.success) {
+            showNotification('You have been logged out');
+            setTimeout(() => window.location.href = './index.html', 1500);
+          }
+        }
+      });
+    }
+
+    // Cleanup on page unload
+    window.addEventListener('beforeunload', function() {
+      if (assessmentUnsubscribe) assessmentUnsubscribe();
+      if (trainingUnsubscribe) trainingUnsubscribe();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,818 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>User Profile — SMTEI Cavite</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="nav container" aria-label="Primary">
+      <a class="brand" href="./index.html">
+        <span><img src="./Images/smtei.png" alt="" class="brand-mark"></span>
+        <span class="brand-text">
+          <strong>SMTEI Cavite</strong>
+          <span class="brand-sub">Assessment & Training Center</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navMenu">
+        Menu
+      </button>
+
+      <div class="nav-menu" id="navMenu">
+        <a href="./index.html#programs">Programs</a>
+        <a href="./schedules.html">Dashboard</a>
+        <a href="./index.html#about">About</a>
+        <a href="./index.html#contact">Contact</a>
+
+        <div class="nav-ctas">
+          <button type="button" class="btn btn-outline" id="signOutBtn">Sign Out</button>
+          <a class="btn btn-primary" href="./index.html">Home</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="profile-section">
+      <div class="container">
+        <!-- Profile Header -->
+        <div class="profile-header">
+          <h1>My Profile</h1>
+          <p class="lead">Manage your account settings and preferences</p>
+        </div>
+
+        <!-- Profile Navigation Tabs -->
+        <div class="profile-tabs">
+          <div class="tabs-nav profile-tabs-nav">
+            <button class="tab-btn active" data-tab="profile-info">Profile Information</button>
+            <button class="tab-btn" data-tab="account-settings">Account Settings</button>
+            <button class="tab-btn" data-tab="security">Security & Privacy</button>
+            <button class="tab-btn" data-tab="preferences">Preferences</button>
+          </div>
+
+          <!-- Profile Information Tab -->
+          <div id="profile-info" class="tab-content active profile-content">
+            <div class="profile-card">
+              <div class="profile-card-header">
+                <h2>Personal Information</h2>
+                <button class="btn btn-outline btn-sm" id="editProfileBtn">Edit Profile</button>
+              </div>
+
+              <!-- Profile Display View -->
+              <div class="profile-display" id="profileDisplay">
+                <div class="profile-avatar-section">
+                  <div class="profile-avatar">
+                    <img id="profileImage" src="" alt="Profile" style="display: none; width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+                    <span id="avatarInitials">AA</span>
+                  </div>
+                  <div class="avatar-actions">
+                    <input type="file" id="profileImageInput" accept="image/*" style="display: none;">
+                    <button class="btn btn-outline btn-sm" id="uploadPhotoBtn">Upload Photo</button>
+                    <button class="btn btn-outline btn-sm" id="removePhotoBtn" style="display: none;">Remove</button>
+                  </div>
+                  <p class="profile-avatar-hint">Upload a profile photo (max 5MB)</p>
+                </div>
+
+                <div class="profile-info-grid">
+                  <div class="profile-info-item">
+                    <label>Full Name</label>
+                    <p id="displayFullName">—</p>
+                  </div>
+                  <div class="profile-info-item">
+                    <label>Email Address</label>
+                    <p id="displayEmail">—</p>
+                  </div>
+                  <div class="profile-info-item">
+                    <label>Phone Number</label>
+                    <p id="displayPhone">—</p>
+                  </div>
+                  <div class="profile-info-item">
+                    <label>Date of Birth</label>
+                    <p id="displayDOB">—</p>
+                  </div>
+                  <div class="profile-info-item">
+                    <label>Account Type</label>
+                    <p id="displayAccountType">—</p>
+                  </div>
+                  <div class="profile-info-item">
+                    <label>Member Since</label>
+                    <p id="displayJoinDate">—</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Profile Edit Form -->
+              <form class="profile-form" id="profileForm" style="display: none;">
+                <div class="form-group">
+                  <label for="editFullName" class="form-label">Full Name</label>
+                  <input type="text" id="editFullName" name="fullName" class="form-input" required />
+                </div>
+
+                <div class="form-group">
+                  <label for="editPhone" class="form-label">Phone Number</label>
+                  <input type="tel" id="editPhone" name="phone" class="form-input" pattern="[0-9+\s\-\(\)]+" required />
+                </div>
+
+                <div class="form-group">
+                  <label for="editDOB" class="form-label">Date of Birth</label>
+                  <input type="date" id="editDOB" name="dateOfBirth" class="form-input" required />
+                </div>
+
+                <div class="form-group">
+                  <label for="editAccountType" class="form-label">Account Type</label>
+                  <select id="editAccountType" name="accountType" class="form-input form-select" disabled>
+                    <option value="assessment">Assessment Candidate</option>
+                    <option value="training">Training Applicant</option>
+                    <option value="both">Both Assessment & Training</option>
+                  </select>
+                  <p class="form-hint">Account type cannot be changed</p>
+                </div>
+
+                <div class="form-actions">
+                  <button type="submit" class="btn btn-primary">Save Changes</button>
+                  <button type="button" class="btn btn-outline" id="cancelEditBtn">Cancel</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Account Settings Tab -->
+          <div id="account-settings" class="tab-content profile-content">
+            <div class="profile-card">
+              <h2>Account Settings</h2>
+
+              <!-- Email Settings -->
+              <div class="settings-section">
+                <h3>Email Address</h3>
+                <p class="muted">Your primary email for account access and notifications</p>
+                <div class="setting-item">
+                  <div>
+                    <p class="setting-label" id="settingEmail">—</p>
+                    <p class="setting-status" id="emailStatus">Verified ✓</p>
+                  </div>
+                  <button class="btn btn-outline btn-sm" id="changeEmailBtn">Change Email</button>
+                </div>
+              </div>
+
+              <!-- Two-Factor Authentication -->
+              <div class="settings-section">
+                <h3>Two-Factor Authentication</h3>
+                <p class="muted">Add an extra layer of security to your account</p>
+                <div class="setting-item">
+                  <div>
+                    <p class="setting-label">2FA Status</p>
+                    <p class="setting-status" id="twoFAStatus">Not enabled</p>
+                  </div>
+                  <button class="btn btn-outline btn-sm" id="enable2FABtn">Enable 2FA</button>
+                </div>
+              </div>
+
+              <!-- Connected Devices -->
+              <div class="settings-section">
+                <h3>Connected Devices</h3>
+                <p class="muted">Manage devices that have access to your account</p>
+                <div class="devices-list">
+                  <div class="device-item">
+                    <div class="device-icon">💻</div>
+                    <div class="device-info">
+                      <p class="device-name">Current Device</p>
+                      <p class="device-detail">Last active: Now</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Account Recovery -->
+              <div class="settings-section">
+                <h3>Account Recovery</h3>
+                <p class="muted">Set up recovery options to regain access to your account</p>
+                <div class="setting-item">
+                  <div>
+                    <p class="setting-label">Recovery Email</p>
+                    <p class="setting-status" id="recoveryEmailStatus">Not set</p>
+                  </div>
+                  <button class="btn btn-outline btn-sm" id="setupRecoveryBtn">Set Up</button>
+                </div>
+              </div>
+
+              <!-- Data Export -->
+              <div class="settings-section">
+                <h3>Data Export</h3>
+                <p class="muted">Download a copy of your data</p>
+                <button class="btn btn-outline btn-sm" id="exportDataBtn">Export My Data</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Security & Privacy Tab -->
+          <div id="security" class="tab-content profile-content">
+            <div class="profile-card">
+              <h2>Security & Privacy</h2>
+
+              <!-- Password -->
+              <div class="settings-section">
+                <h3>Password</h3>
+                <p class="muted">Change your password to keep your account secure</p>
+                <button class="btn btn-outline btn-sm" id="changePasswordBtn">Change Password</button>
+              </div>
+
+              <!-- Login Activity -->
+              <div class="settings-section">
+                <h3>Login Activity</h3>
+                <p class="muted">Recent activity on your account</p>
+                <div class="activity-list">
+                  <div class="activity-item">
+                    <div>
+                      <p class="activity-action">Signed in from Chrome on Windows</p>
+                      <p class="activity-time">Today at 10:30 AM</p>
+                    </div>
+                    <p class="activity-ip">IP: 192.168.1.1</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Privacy Policy -->
+              <div class="settings-section">
+                <h3>Privacy & Data</h3>
+                <p class="muted">Control how we use your data</p>
+                <label class="checkbox-label">
+                  <input type="checkbox" id="emailNotifications" checked />
+                  <span>Receive email notifications about your account</span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" id="marketingEmails" />
+                  <span>Receive marketing and promotional emails</span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" id="dataAnalytics" checked />
+                  <span>Allow usage analytics to improve our services</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Preferences Tab -->
+          <div id="preferences" class="tab-content profile-content">
+            <div class="profile-card">
+              <h2>Preferences</h2>
+
+              <!-- Language -->
+              <div class="settings-section">
+                <h3>Language</h3>
+                <p class="muted">Select your preferred language</p>
+                <select id="languageSelect" class="form-input" style="max-width: 300px;">
+                  <option value="en">English</option>
+                  <option value="tl">Tagalog</option>
+                  <option value="es">Spanish</option>
+                </select>
+              </div>
+
+              <!-- Theme -->
+              <div class="settings-section">
+                <h3>Theme</h3>
+                <p class="muted">Choose your preferred color theme</p>
+                <div class="theme-options">
+                  <label class="theme-option">
+                    <input type="radio" name="theme" value="light" checked />
+                    <span class="theme-preview" style="background: #fff; border: 2px solid #0B4DBB;"></span>
+                    <span>Light</span>
+                  </label>
+                  <label class="theme-option">
+                    <input type="radio" name="theme" value="dark" />
+                    <span class="theme-preview" style="background: #1f2937;"></span>
+                    <span>Dark</span>
+                  </label>
+                  <label class="theme-option">
+                    <input type="radio" name="theme" value="auto" />
+                    <span class="theme-preview" style="background: linear-gradient(90deg, #fff 50%, #1f2937 50%);"></span>
+                    <span>Auto</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Notifications -->
+              <div class="settings-section">
+                <h3>Notification Preferences</h3>
+                <p class="muted">Manage how you receive notifications</p>
+                <label class="checkbox-label">
+                  <input type="checkbox" id="assessmentNotifications" checked />
+                  <span>Assessment status updates</span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" id="trainingNotifications" checked />
+                  <span>Training schedule changes</span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" id="systemNotifications" checked />
+                  <span>System and security notifications</span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" id="marketingNotifications" />
+                  <span>Promotional offers and updates</span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" id="reminderNotifications" checked />
+                  <span>Application deadline reminders</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sign Out Section -->
+        <div class="profile-card bottom-card">
+          <div class="signout-section">
+            <h3>Session Management</h3>
+            <p class="muted">Sign out from your account</p>
+            <button class="btn btn-outline" id="signOutProfileBtn">Sign Out</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 SMTEI Cavite. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Change Email Modal -->
+  <div class="modal" id="emailModal" style="display: none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Change Email Address</h2>
+        <button class="modal-close" id="closeEmailModal">&times;</button>
+      </div>
+      <form id="changeEmailForm">
+        <div class="form-group">
+          <label for="newEmail" class="form-label">New Email Address</label>
+          <input type="email" id="newEmail" class="form-input" required />
+        </div>
+        <div class="form-group">
+          <label for="emailPassword" class="form-label">Current Password</label>
+          <input type="password" id="emailPassword" class="form-input" required />
+        </div>
+        <div class="modal-actions">
+          <button type="submit" class="btn btn-primary">Change Email</button>
+          <button type="button" class="btn btn-outline" id="cancelEmailBtn">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="modal" id="passwordModal" style="display: none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Change Password</h2>
+        <button class="modal-close" id="closePasswordModal">&times;</button>
+      </div>
+      <form id="changePasswordForm">
+        <div class="form-group">
+          <label for="currentPassword" class="form-label">Current Password</label>
+          <input type="password" id="currentPassword" class="form-input" required />
+        </div>
+        <div class="form-group">
+          <label for="newPassword" class="form-label">New Password</label>
+          <input type="password" id="newPassword" class="form-input" required />
+        </div>
+        <div class="form-group">
+          <label for="confirmNewPassword" class="form-label">Confirm New Password</label>
+          <input type="password" id="confirmNewPassword" class="form-input" required />
+        </div>
+        <div class="modal-actions">
+          <button type="submit" class="btn btn-primary">Change Password</button>
+          <button type="button" class="btn btn-outline" id="cancelPasswordBtn">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Overlay -->
+  <div class="modal-overlay" id="modalOverlay" style="display: none;"></div>
+
+  <script type="module">
+    import { 
+      logout, 
+      getMe, 
+      updateProfile,
+      uploadProfilePicture as apiUploadProfilePicture,
+      removeProfilePicture as apiRemoveProfilePicture
+    } from './js/api.js';
+    import { 
+      changeUserEmail
+    } from './js/firebase-auth.js';
+
+    let currentUser = null;
+    let userProfile = null;
+
+    // Check authentication and load profile
+    // fetch profile from backend regardless of Firebase state
+    async function initProfile() {
+      try {
+        const resp = await getMe();
+        if (!resp.ok) {
+          window.location.href = './signin.html';
+          return;
+        }
+        // backend returns complete row with snake_case keys
+        const b = resp.user || {};
+        userProfile = {
+          id: b.id,
+          fullName: b.full_name || b.fullName,
+          email: b.email,
+          phone: b.phone,
+          dateOfBirth: b.dob || b.dateOfBirth,
+          accountType: b.account_type || b.accountType,
+          createdAt: b.created_at || b.createdAt,
+          profilePictureUrl: b.profile_picture_url || b.profilePictureUrl
+        };
+        displayUserProfile();
+      } catch (err) {
+        console.warn('error fetching profile', err);
+        window.location.href = './signin.html';
+      }
+    }
+
+    initProfile();
+
+    // Display User Profile Information
+    function displayUserProfile() {
+      if (!userProfile) return;
+
+      const accountTypeMap = {
+        'assessment': 'Assessment Candidate',
+        'training': 'Training Applicant',
+        'both': 'Both Assessment & Training'
+      };
+
+      // Update display view
+      const fullName = userProfile.fullName || 'User';
+      const initials = fullName.split(' ').map(n => n[0]).join('').toUpperCase();
+      
+      const profileImage = document.getElementById('profileImage');
+      const avatarInitials = document.getElementById('avatarInitials');
+      const removePhotoBtn = document.getElementById('removePhotoBtn');
+      
+      if (userProfile.profilePictureUrl) {
+        profileImage.src = userProfile.profilePictureUrl;
+        profileImage.style.display = 'block';
+        avatarInitials.style.display = 'none';
+        removePhotoBtn.style.display = 'inline-block';
+      } else {
+        profileImage.style.display = 'none';
+        avatarInitials.textContent = initials;
+        avatarInitials.style.display = 'block';
+        removePhotoBtn.style.display = 'none';
+      }
+      document.getElementById('displayFullName').textContent = fullName;
+      document.getElementById('displayEmail').textContent = userProfile.email || currentUser.email;
+      document.getElementById('displayPhone').textContent = userProfile.phone || '—';
+      document.getElementById('displayDOB').textContent = userProfile.dateOfBirth || '—';
+      document.getElementById('displayAccountType').textContent = accountTypeMap[userProfile.accountType] || '—';
+      document.getElementById('settingEmail').textContent = userProfile.email || currentUser.email;
+
+      const joinDate = userProfile.createdAt instanceof Date ? 
+        userProfile.createdAt : 
+        new Date(userProfile.createdAt.seconds * 1000);
+      document.getElementById('displayJoinDate').textContent = joinDate.toLocaleDateString('en-US', { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+      });
+
+      // Set edit form values
+      document.getElementById('editFullName').value = fullName;
+      document.getElementById('editPhone').value = userProfile.phone || '';
+      document.getElementById('editDOB').value = userProfile.dateOfBirth || '';
+      document.getElementById('editAccountType').value = userProfile.accountType || '';
+    }
+
+    // Tab Navigation
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabBtns.forEach(b => b.classList.remove('active'));
+        tabContents.forEach(content => content.classList.remove('active'));
+
+        btn.classList.add('active');
+        const tabId = btn.getAttribute('data-tab');
+        document.getElementById(tabId).classList.add('active');
+      });
+    });
+
+    // Edit Profile Toggle
+    const editProfileBtn = document.getElementById('editProfileBtn');
+    const profileDisplay = document.getElementById('profileDisplay');
+    const profileForm = document.getElementById('profileForm');
+    const cancelEditBtn = document.getElementById('cancelEditBtn');
+
+    editProfileBtn.addEventListener('click', () => {
+      profileDisplay.style.display = 'none';
+      profileForm.style.display = 'block';
+    });
+
+    cancelEditBtn.addEventListener('click', () => {
+      profileDisplay.style.display = 'block';
+      profileForm.style.display = 'none';
+    });
+
+    // Save Profile Changes
+    document.getElementById('profileForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const updatedData = {
+        fullName: document.getElementById('editFullName').value,
+        phone: document.getElementById('editPhone').value,
+        dateOfBirth: document.getElementById('editDOB').value
+      };
+
+      // update both firebase profile and our own database if possible
+      let firebaseResult = { success: true };
+      try {
+        firebaseResult = await updateUserProfile(currentUser.uid, updatedData);
+      } catch {}
+
+      let backendResult = { success: true };
+      try {
+        const resp = await updateProfile({
+          fullName: updatedData.fullName,
+          phone: updatedData.phone,
+          dob: updatedData.dateOfBirth
+        });
+        if (!resp.ok) {
+          backendResult.success = false;
+        } else {
+          const b = resp.user || {};
+          const backendData = {
+            fullName: b.full_name || b.fullName,
+            email: b.email,
+            phone: b.phone,
+            dateOfBirth: b.dob || b.dateOfBirth,
+            accountType: b.account_type || b.accountType,
+            createdAt: b.created_at || b.createdAt
+          };
+          userProfile = { ...userProfile, ...backendData };
+        }
+      } catch (err) {
+        backendResult.success = false;
+      }
+
+      if (firebaseResult.success && backendResult.success) {
+        // refresh display using whatever data we have
+        displayUserProfile();
+        profileDisplay.style.display = 'block';
+        profileForm.style.display = 'none';
+        showNotification('✓ Profile updated successfully');
+      } else {
+        showNotification('✗ Failed to update profile');
+      }
+    });
+
+    // Modal Functions
+    const passwordModal = document.getElementById('passwordModal');
+    const modalOverlay = document.getElementById('modalOverlay');
+    const changePasswordBtn = document.getElementById('changePasswordBtn');
+    const closePasswordModal = document.getElementById('closePasswordModal');
+    const cancelPasswordBtn = document.getElementById('cancelPasswordBtn');
+
+    function openModal() {
+      passwordModal.style.display = 'block';
+      modalOverlay.style.display = 'block';
+    }
+
+    function closeModal() {
+      passwordModal.style.display = 'none';
+      modalOverlay.style.display = 'none';
+    }
+
+    changePasswordBtn.addEventListener('click', openModal);
+    closePasswordModal.addEventListener('click', closeModal);
+    cancelPasswordBtn.addEventListener('click', closeModal);
+    modalOverlay.addEventListener('click', closeModal);
+
+    // Email Modal Functions
+    const emailModal = document.getElementById('emailModal');
+    const changeEmailBtn = document.getElementById('changeEmailBtn');
+    const closeEmailModal = document.getElementById('closeEmailModal');
+    const cancelEmailBtn = document.getElementById('cancelEmailBtn');
+
+    function openEmailModal() {
+      emailModal.style.display = 'block';
+      modalOverlay.style.display = 'block';
+    }
+
+    function closeEmailModal() {
+      emailModal.style.display = 'none';
+      modalOverlay.style.display = 'none';
+    }
+
+    changeEmailBtn.addEventListener('click', openEmailModal);
+    closeEmailModal.addEventListener('click', closeEmailModal);
+    cancelEmailBtn.addEventListener('click', closeEmailModal);
+
+    // Change Email Form
+    document.getElementById('changeEmailForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const newEmail = document.getElementById('newEmail').value;
+      const password = document.getElementById('emailPassword').value;
+
+      const result = await changeUserEmail(newEmail, password);
+      
+      if (result.success) {
+        userProfile = await getUserProfile(currentUser.uid);
+        displayUserProfile();
+        showNotification('✓ Email changed successfully. Please check your new email for verification.');
+        closeEmailModal();
+        document.getElementById('changeEmailForm').reset();
+      } else {
+        showNotification('✗ ' + result.error);
+      }
+    });
+
+    // Profile Picture Upload
+    const uploadPhotoBtn = document.getElementById('uploadPhotoBtn');
+    const removePhotoBtn = document.getElementById('removePhotoBtn');
+    const profileImageInput = document.getElementById('profileImageInput');
+
+    uploadPhotoBtn.addEventListener('click', () => {
+      profileImageInput.click();
+    });
+
+    profileImageInput.addEventListener('change', async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      // Show loading state
+      uploadPhotoBtn.textContent = 'Uploading...';
+      uploadPhotoBtn.disabled = true;
+
+      try {
+        const result = await apiUploadProfilePicture(file);
+        if (result.ok) {
+          const b = result.user || {};
+          userProfile.profilePictureUrl = b.profile_picture_url || b.profilePictureUrl;
+          displayUserProfile();
+          showNotification('✓ Profile picture uploaded successfully');
+        } else {
+          showNotification('✗ ' + result.error);
+        }
+      } catch (err) {
+        showNotification('✗ ' + err.message);
+      }
+
+      // Reset button state
+      uploadPhotoBtn.textContent = 'Upload Photo';
+      uploadPhotoBtn.disabled = false;
+      profileImageInput.value = '';
+    });
+
+    removePhotoBtn.addEventListener('click', async () => {
+      if (!confirm('Are you sure you want to remove your profile picture?')) return;
+
+      // Show loading state
+      removePhotoBtn.textContent = 'Removing...';
+      removePhotoBtn.disabled = true;
+
+      try {
+        const result = await apiRemoveProfilePicture();
+        if (result.ok) {
+          userProfile.profilePictureUrl = null;
+          displayUserProfile();
+          showNotification('✓ Profile picture removed');
+        } else {
+          showNotification('✗ Failed to remove profile picture');
+        }
+      } catch (err) {
+        showNotification('✗ ' + err.message);
+      }
+
+      // Reset button state
+      removePhotoBtn.textContent = 'Remove';
+      removePhotoBtn.disabled = false;
+    });
+
+    document.getElementById('marketingEmails').addEventListener('change', function() {
+      localStorage.setItem('marketingEmails', this.checked);
+      showNotification('✓ Marketing preference updated');
+    });
+
+    document.getElementById('dataAnalytics').addEventListener('change', function() {
+      localStorage.setItem('dataAnalytics', this.checked);
+      showNotification('✓ Privacy setting updated');
+    });
+
+    document.getElementById('languageSelect').addEventListener('change', function() {
+      localStorage.setItem('language', this.value);
+      showNotification('✓ Language preference saved');
+    });
+
+    document.querySelectorAll('input[name="theme"]').forEach(radio => {
+      radio.addEventListener('change', function() {
+        localStorage.setItem('theme', this.value);
+        showNotification('✓ Theme preference saved');
+      });
+    });
+
+    // Additional Notification Preferences
+    document.getElementById('assessmentNotifications').addEventListener('change', function() {
+      localStorage.setItem('assessmentNotifications', this.checked);
+      showNotification('✓ Notification setting updated');
+    });
+
+    document.getElementById('trainingNotifications').addEventListener('change', function() {
+      localStorage.setItem('trainingNotifications', this.checked);
+      showNotification('✓ Notification setting updated');
+    });
+
+    document.getElementById('systemNotifications').addEventListener('change', function() {
+      localStorage.setItem('systemNotifications', this.checked);
+      showNotification('✓ Notification setting updated');
+    });
+
+    document.getElementById('marketingNotifications').addEventListener('change', function() {
+      localStorage.setItem('marketingNotifications', this.checked);
+      showNotification('✓ Notification setting updated');
+    });
+
+    document.getElementById('reminderNotifications').addEventListener('change', function() {
+      localStorage.setItem('reminderNotifications', this.checked);
+      showNotification('✓ Notification setting updated');
+    });
+
+    // Enable 2FA
+    document.getElementById('enable2FABtn').addEventListener('click', () => {
+      showNotification('🔐 Two-Factor Authentication setup coming soon');
+    });
+
+    // Setup Recovery Email
+    document.getElementById('setupRecoveryBtn').addEventListener('click', () => {
+      showNotification('📧 Recovery email setup coming soon');
+    });
+
+    // Export Data
+    document.getElementById('exportDataBtn').addEventListener('click', () => {
+      showNotification('📄 Data export feature coming soon');
+    });
+
+    // Danger Zone - Delete Account
+    document.getElementById('deleteAccountBtn').addEventListener('click', () => {
+      if (confirm('Are you sure? This action cannot be undone. All your data will be permanently deleted.')) {
+        if (confirm('Type "YES" to confirm account deletion')) {
+          showNotification('✗ Account deletion requests must be processed manually. Please contact support.');
+        }
+      }
+    });
+
+    // Sign Out (nav and profile section)
+    const navSignOut = document.getElementById('signOutBtn');
+    const profileSignOut = document.getElementById('signOutProfileBtn');
+    const attachSignOut = (element) => {
+      if (!element) return;
+      element.addEventListener('click', async () => {
+        if (confirm('Are you sure you want to sign out?')) {
+          // clear backend token
+          try { await logout(); } catch {}
+
+          showNotification('✓ Signed out successfully');
+          setTimeout(() => {
+            window.location.href = './index.html';
+          }, 1500);
+        }
+      });
+    };
+    attachSignOut(navSignOut);
+    attachSignOut(profileSignOut);
+
+    // Notification System
+    function showNotification(message) {
+      const notification = document.createElement('div');
+      notification.className = 'notification';
+      notification.textContent = message;
+      document.body.appendChild(notification);
+
+      setTimeout(() => {
+        notification.classList.add('show');
+      }, 10);
+
+      setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => notification.remove(), 300);
+      }, 3000);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Assessment Center Dashboard — SMTEI Cavite</title>
+
+  <!-- Fonts (example pairing) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="nav container" aria-label="Primary">
+      <a class="brand" href="./index.html">
+        <span><img src="./Images/smtei.png" alt="" class="brand-mark"></span>
+        <span class="brand-text">
+          <strong>SMTEI Cavite</strong>
+          <span class="brand-sub">Assessment & Training Center</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navMenu">
+        Menu
+      </button>
+
+      <div class="nav-menu" id="navMenu">
+        <a href="./index.html#programs">Programs</a>
+        <a href="./schedules.html">Dashboard</a>
+        <a href="./index.html#about">About</a>
+        <a href="./index.html#contact">Contact</a>
+
+        <div class="nav-ctas">
+          <div class="auth-buttons" id="authButtons">
+            
+          <a class="btn btn-outline" href="./inquiry.html">Company Inquiry</a>
+          <a class="btn btn-primary" href="./apply.html">Apply</a>
+
+          <button class="btn btn-outline auth-btn" id="signInBtn" style="display: none;">
+              <span class="btn-icon">👤</span>
+              Sign In
+            </button>
+            <button type="button" class="btn btn-primary auth-btn" id="signOutBtn" style="display: none;">
+              Sign Out
+            </button>
+            <button class="profile-btn" id="profileBtn" title="User Profile" style="display: none;">
+              <div class="profile-avatar-small" id="navAvatarContainer">
+                <a href="./profile.html" id="navAvatar">👤</a>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="section">
+      <div class="container">
+        <!-- Dashboard Header -->
+        <header class="section-head">
+          <h1>Assessment Center Dashboard</h1>
+          <p class="muted">Filter by qualification to view applicants, requirements, and essential information for your assessment path.</p>
+        </header>
+
+        <!-- Qualification Filter -->
+        <div class="dashboard-filter">
+          <label for="qualificationSelect" class="filter-label">Filter by Qualification:</label>
+          <select id="qualificationSelect" class="filter-select" aria-label="Select qualification to filter dashboard">
+            <option value="">All Qualifications</option>
+            <option value="ATS_NC_I">Automotive Servicing NC I</option>
+            <option value="ATS_NC_II">Automotive Servicing NC II</option>
+            <option value="EIM_NC_II">Electrical Installation and Maintenance NC II</option>
+            <option value="SMAW_NC_I">Shielded Metal Arc Welding (SMAW) NC I</option>
+            <option value="SMAW_NC_II">Shielded Metal Arc Welding (SMAW) NC II</option>
+            <option value="MCG_NC_II">Machining NC II</option>
+            <option value="CNC_LATHE_NC_II">CNC Lathe Machine Operation NC II</option>
+            <option value="CNC_MILLING_NC_II">CNC Milling Machine Operation NC II</option>
+            <option value="COK_NC_II">Cookery NC II</option>
+            <option value="MEC_NC_II">Mechatronics Servicing NC II</option>
+            <option value="TEC_NC_II">Technical Drafting NC II</option>
+            <option value="BPP_NC_II">Bread and Pastry Production NC II</option>
+            <option value="DRV_NC_II">Driving NC II</option>
+            <option value="BRT_NC_II">Barista NC II</option>
+            <option value="VGD_NC_III">Visual Graphic Design NC III</option>
+          </select>
+        </div>
+
+        <!-- Dashboard Stats Row -->
+        <div class="dashboard-stats grid-4">
+          <div class="stat-card">
+            <p class="stat-label">Waiting Applicants</p>
+            <p class="stat-number" id="waitingCount">48</p>
+            <p class="stat-detail">Pending assessment</p>
+          </div>
+          <div class="stat-card">
+            <p class="stat-label">Schedule Sessions</p>
+            <p class="stat-number" id="sessionsCount">12</p>
+            <p class="stat-detail">Upcoming assessments</p>
+          </div>
+          <div class="stat-card">
+            <p class="stat-label">Success Rate</p>
+            <p class="stat-number" id="successRate">85%</p>
+            <p class="stat-detail">Certification achieved</p>
+          </div>
+          <div class="stat-card">
+            <p class="stat-label">Avg. Processing</p>
+            <p class="stat-number" id="avgTime">14 days</p>
+            <p class="stat-detail">Application review</p>
+          </div>
+        </div>
+
+        <!-- Main Dashboard Content -->
+        <div class="dashboard-grid">
+          <!-- Requirements Section -->
+          <section class="dashboard-section">
+            <div class="section-header">
+              <h2>Application Requirements</h2>
+              <p class="muted">Complete documentation needed for qualification assessment</p>
+            </div>
+            <ul class="requirements-list" id="requirementsList">
+              <li class="requirement-item">
+                <span class="requirement-icon">📋</span>
+                <div>
+                  <strong>Valid Government ID</strong>
+                  <p class="muted">Philippine passport, driver's license, or National ID</p>
+                </div>
+              </li>
+              <li class="requirement-item">
+                <span class="requirement-icon">🎓</span>
+                <div>
+                  <strong>Educational Background Certificate</strong>
+                  <p class="muted">High school diploma or equivalent (original and copy)</p>
+                </div>
+              </li>
+              <li class="requirement-item">
+                <span class="requirement-icon">🏢</span>
+                <div>
+                  <strong>Work Experience Letter</strong>
+                  <p class="muted">Proof of relevant industry experience (if applicable)</p>
+                </div>
+              </li>
+              <li class="requirement-item">
+                <span class="requirement-icon">📸</span>
+                <div>
+                  <strong>Recent Passport Photos</strong>
+                  <p class="muted">4x6 inches, white background (2 pieces)</p>
+                </div>
+              </li>
+              <li class="requirement-item">
+                <span class="requirement-icon">✍️</span>
+                <div>
+                  <strong>Assessment Registration Form</strong>
+                  <p class="muted">Completed and signed form available at registration desk</p>
+                </div>
+              </li>
+              <li class="requirement-item">
+                <span class="requirement-icon">💳</span>
+                <div>
+                  <strong>Assessment Fee Receipt</strong>
+                  <p class="muted">Proof of payment (varies by qualification)</p>
+                </div>
+              </li>
+            </ul>
+          </section>
+
+          <!-- Accredited Qualifications Section -->
+          <section class="dashboard-section">
+            <div class="section-header">
+              <h2>Accredited Qualifications & Forms</h2>
+              <p class="muted">TESDA-accredited programs with downloadable application documents</p>
+            </div>
+            <div class="qualifications-list" id="qualificationsList">
+                <article class="qualification-card">
+                <h3>Automotive Servicing NC I</h3>
+                <p class="muted">Vehicle maintenance and repair services</p>
+                <div class="card-meta">
+                  <span class="badge">TESDA Accredited</span>
+                  <span class="badge">AC-ATS0104212426122</span>
+                  <span class="badge">Valid until: 21 June 2026</span>
+                  <span class="badge fee-badge">₱1,141.00</span>
+                </div>
+                <div class="card-actions">
+                  <a href="./forms/ATS_NC_I_Application_Form.pdf" class="btn btn-outline btn-small" download>Download Application Form</a>
+                  <a href="./forms/ATS_NC_I_Self_Assessment.pdf" class="btn btn-primary btn-small" download>Download Self-Assessment Guide</a>
+                  <a href="#" class="text-link">View Details</a>
+                </div>
+              </article>
+              <article class="qualification-card">
+                <h3>Automotive Servicing NC II</h3>
+                <p class="muted">Vehicle maintenance and repair services</p>
+                <div class="card-meta">
+                  <span class="badge">TESDA Accredited</span>
+                  <span class="badge">AC-ATS0204212426123</span>
+                  <span class="badge">Valid until: 21 June 2026</span>
+                  <span class="badge fee-badge">₱1,237.00</span>
+                </div>
+                <div class="card-actions">
+                  <a href="./forms/ATS_NC_II_Application_Form.pdf" class="btn btn-outline btn-small" download>Download Application Form</a>
+                  <a href="./forms/ATS_NC_II_Self_Assessment.pdf" class="btn btn-primary btn-small" download>Download Self-Assessment Guide</a>
+                  <a href="#" class="text-link">View Details</a>
+                </div>
+              </article>
+
+              <article class="qualification-card">
+                <h3>Electrical Installation and Maintenance NC II</h3>
+                <p class="muted">Electrical wiring and power systems</p>
+                <div class="card-meta">
+                  <span class="badge">TESDA Accredited</span>
+                  <span class="badge">AC-EIM0204212426124</span>
+                  <span class="badge">Valid until: 21 June 2026</span>
+                  <span class="badge fee-badge">₱1,849.00</span>
+                </div>
+                <div class="card-actions">
+                  <a href="./forms/EIM_NC_II_Application_Form.pdf" class="btn btn-outline btn-small" download>Download Application Form</a>
+                  <a href="./forms/EIM_NC_II_Self_Assessment.pdf" class="btn btn-primary btn-small" download>Download Self-Assessment Guide</a>
+                  <a href="#" class="text-link">View Details</a>
+                </div>
+              </article>
+              <article class="qualification-card">
+                <h3>Shielded Metal Arc Welding (SMAW) NC I</h3>
+                <p class="muted">Metal fabrication and welding techniques</p>
+                <div class="card-meta">
+                  <span class="badge">TESDA Accredited</span>
+                  <span class="badge">AC-EAW0104212527241</span>
+                  <span class="badge">Valid until: 13 October 2027</span>
+                  <span class="badge fee-badge">₱1,115.00</span>
+                </div>
+                <div class="card-actions">
+                  <a href="./forms/SMAW_NC_I_Application_Form.pdf" class="btn btn-outline btn-small" download>Download Application Form</a>
+                  <a href="./forms/SMAW_NC_I_Self_Assessment.pdf" class="btn btn-primary btn-small" download>Download Self-Assessment Guide</a>
+                  <a href="#" class="text-link">View Details</a>
+                </div>
+              </article>
+              <article class="qualification-card">
+                <h3>Shielded Metal Arc Welding (SMAW) NC II</h3>
+                <p class="muted">Metal fabrication and welding techniques</p>
+                <div class="card-meta">
+                  <span class="badge">TESDA Accredited</span>
+                  <span class="badge">AC-EAW0204212527242</span>
+                  <span class="badge">Valid until: 13 October 2027</span>
+                  <span class="badge fee-badge">₱1,137.00</span>
+                </div>
+                <div class="card-actions">
+                  <a href="./forms/SMAW_NC_II_Application_Form.pdf" class="btn btn-outline btn-small" download>Download Application Form</a>
+                  <a href="./forms/SMAW_NC_II_Self_Assessment.pdf" class="btn btn-primary btn-small" download>Download Self-Assessment Guide</a>
+                  <a href="#" class="text-link">View Details</a>
+                </div>
+              </article>
+
+              <article class="qualification-card">
+                <h3>Machining NC II</h3>
+                <p class="muted">Precision machining and manufacturing</p>
+                <div class="card-meta">
+                  <span class="badge">TESDA Accredited</span>
+                  <span class="badge">AC-MCG0204212527244</span>
+                  <span class="badge">Valid until: 13 October 2027</span>
+                  <span class="badge fee-badge">₱1,285.00</span>
+                </div>
+                <div class="card-actions">
+                  <a href="./forms/MCG_NC_II_Application_Form.pdf" class="btn btn-outline btn-small" download>Download Application Form</a>
+                  <a href="./forms/MCG_NC_II_Self_Assessment.pdf" class="btn btn-primary btn-small" download>Download Self-Assessment Guide</a>
+                  <a href="#" class="text-link">View Details</a>
+                </div>
+              </article>
+
+              <article class="qualification-card">
+                <h3>CNC Lathe Machine Operation NC II</h3>
+                <p class="muted">Computer numerical control lathe operations</p>
+                <div class="card-meta">
+                  <span class="badge">TESDA Accredited</span>
+                  <span class="badge">AC-CLO0204212527245</span>
+                  <span class="badge">Valid until: 13 October 2027</span>
+                  <span class="badge fee-badge">₱1,385.00</span>
+                </div>
+                <div class="card-actions">
+                  <a href="./forms/CNC_LATHE_NC_II_Application_Form.pdf" class="btn btn-outline btn-small" download>Download Application Form</a>
+                  <a href="./forms/CNC_LATHE_NC_II_Self_Assessment.pdf" class="btn btn-primary btn-small" download>Download Self-Assessment Guide</a>
+                  <a href="#" class="text-link">View Details</a>
+                </div>
+              </article>
+
+              <article class="qualification-card">
+                <h3>CNC Milling Machine Operation NC II</h3>
+                <p class="muted">Computer numerical control milling operations</p>
+                <div class="card-meta">
+                  <span class="badge">TESDA Accredited</span>
+                  <span class="badge">AC-CMO0204212527246</span>
+                  <span class="badge">Valid until: 13 October 2027</span>
+                  <span class="badge fee-badge">₱1,385.00</span>
+                </div>
+                <div class="card-actions">
+                  <a href="./forms/CNC_MILLING_NC_II_Application_Form.pdf" class="btn btn-outline btn-small" download>Download Application Form</a>
+                  <a href="./forms/CNC_MILLING_NC_II_Self_Assessment.pdf" class="btn btn-primary btn-small" download>Download Self-Assessment Guide</a>
+                  <a href="#" class="text-link">View Details</a>
+                </div>
+              </article>
+
+              <article class="qualification-card">
+                <h3>Cookery NC II</h3>
+                <p class="muted">Professional cooking and food preparation</p>
+                <div class="card-meta">
+                  <span class="badge">TESDA Accredited</span>
+                  <span class="badge">AC-COK0204212426153</span>
+                  <span class="badge">Valid until: 22 October 2026</span>
+                  <span class="badge fee-badge">₱1,907.00</span>
+                </div>
+                <div class="card-actions">
+                  <a href="./forms/COK_NC_II_Application_Form.pdf" class="btn btn-outline btn-small" download>Download Application Form</a>
+                  <a href="./forms/COK_NC_II_Self_Assessment.pdf" class="btn btn-primary btn-small" download>Download Self-Assessment Guide</a>
+                  <a href="#" class="text-link">View Details</a>
+                </div>
+              </article>
+
+              <article class="qualification-card">
+                <h3>Mechatronics Servicing NC II</h3>
+                <p class="muted">Automated systems and robotics maintenance</p>
+                <div class="card-meta">
+                  <span class="badge">TESDA Accredited</span>
+                  <span class="badge">AC-MEC0204212426154</span>
+                  <span class="badge">Valid until: 22 October 2026</span>
+                  <span class="badge fee-badge">₱1,301.00</span>
+                </div>
+                <div class="card-actions">
+                  <a href="./forms/MEC_NC_II_Application_Form.pdf" class="btn btn-outline btn-small" download>Download Application Form</a>
+                  <a href="./forms/MEC_NC_II_Self_Assessment.pdf" class="btn btn-primary btn-small" download>Download Self-Assessment Guide</a>
+                  <a href="#" class="text-link">View Details</a>
+                </div>
+              </article>
+
+              <article class="qualification-card">
+                <h3>Technical Drafting NC II</h3>
+                <p class="muted">Engineering drawing and CAD design</p>
+                <div class="card-meta">
+                  <span class="badge">TESDA Accredited</span>
+                  <span class="badge">AC-TEC0204212426125</span>
+                  <span class="badge">Valid until: 21 June 2026</span>
+                  <span class="badge fee-badge">₱1,046.00</span>
+                </div>
+                <div class="card-actions">
+                  <a href="./forms/TEC_NC_II_Application_Form.pdf" class="btn btn-outline btn-small" download>Download Application Form</a>
+                  <a href="./forms/TEC_NC_II_Self_Assessment.pdf" class="btn btn-primary btn-small" download>Download Self-Assessment Guide</a>
+                  <a href="#" class="text-link">View Details</a>
+                </div>
+              </article>
+
+              <article class="qualification-card">
+                <h3>Bread and Pastry Production NC II</h3>
+                <p class="muted">Baking and pastry arts</p>
+                <div class="card-meta">
+                  <span class="badge">TESDA Accredited</span>
+                  <span class="badge">AC-BPPO204212426126</span>
+                  <span class="badge">Valid until: 21 June 2026</span>
+                  <span class="badge fee-badge">₱1,720.00</span>
+                </div>
+                <div class="card-actions">
+                  <a href="./forms/BPP_NC_II_Application_Form.pdf" class="btn btn-outline btn-small" download>Download Application Form</a>
+                  <a href="./forms/BPP_NC_II_Self_Assessment.pdf" class="btn btn-primary btn-small" download>Download Self-Assessment Guide</a>
+                  <a href="#" class="text-link">View Details</a>
+                </div>
+              </article>
+
+              <article class="qualification-card">
+                <h3>Driving NC II</h3>
+                <p class="muted">Professional driving and vehicle operation</p>
+                <div class="card-meta">
+                  <span class="badge">TESDA Accredited</span>
+                  <span class="badge">AC-DRV0204212527240</span>
+                  <span class="badge">Valid until: 13 October 2027</span>
+                  <span class="badge fee-badge">₱1,034.00</span>
+                </div>
+                <div class="card-actions">
+                  <a href="./forms/DRV_NC_II_Application_Form.pdf" class="btn btn-outline btn-small" download>Download Application Form</a>
+                  <a href="./forms/DRV_NC_II_Self_Assessment.pdf" class="btn btn-primary btn-small" download>Download Self-Assessment Guide</a>
+                  <a href="#" class="text-link">View Details</a>
+                </div>
+              </article>
+
+              <article class="qualification-card">
+                <h3>Barista NC II</h3>
+                <p class="muted">Coffee preparation and service</p>
+                <div class="card-meta">
+                  <span class="badge">TESDA Accredited</span>
+                  <span class="badge">AC-BRT0204212527247</span>
+                  <span class="badge">Valid until: 13 October 2027</span>
+                  <span class="badge fee-badge">₱1,295.00</span>
+                </div>
+                <div class="card-actions">
+                  <a href="./forms/BRT_NC_II_Application_Form.pdf" class="btn btn-outline btn-small" download>Download Application Form</a>
+                  <a href="./forms/BRT_NC_II_Self_Assessment.pdf" class="btn btn-primary btn-small" download>Download Self-Assessment Guide</a>
+                  <a href="#" class="text-link">View Details</a>
+                </div>
+              </article>
+
+              <article class="qualification-card">
+                <h3>Visual Graphic Design NC III</h3>
+                <p class="muted">Graphic design and visual communication</p>
+                <div class="card-meta">
+                  <span class="badge">TESDA Accredited</span>
+                  <span class="badge">AC-VGD0304212527248</span>
+                  <span class="badge">Valid until: 13 October 2027</span>
+                  <span class="badge fee-badge">₱932.00</span>
+                </div>
+                <div class="card-actions">
+                  <a href="./forms/VGD_NC_III_Application_Form.pdf" class="btn btn-outline btn-small" download>Download Application Form</a>
+                  <a href="./forms/VGD_NC_III_Self_Assessment.pdf" class="btn btn-primary btn-small" download>Download Self-Assessment Guide</a>
+                  <a href="#" class="text-link">View Details</a>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <!-- Self-Assessment Guide Section -->
+          <section class="dashboard-section">
+           
+            <div class="guide-content" id="assessmentGuide">
+              <div class="guide-form-card" id="selfAssessmentCard">
+                <div class="form-header">
+                  
+
+              <div class="guide-contact">
+                <h3>Need Help?</h3>
+                <p>Our assessment counselors are available to guide you through the self-assessment process.</p>
+                <div class="contact-info">
+                  <p><strong>Assessment Counseling:</strong> (046) 480-8372 / (046) 480-8373</p>
+                  <p><strong>Email:</strong> smtei.adlas@thesistersofmaryschools.edu.ph</p>
+                  <p><strong>Office Hours:</strong> Monday - Friday, 8:00 AM - 5:00 PM</p>
+                  <p><strong>Walk-in Counseling:</strong> Assessment Center, Ground Floor</p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

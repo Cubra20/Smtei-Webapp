@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Apply — SMTEI Cavite</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="nav container" aria-label="Primary">
+      <a class="brand" href="./index.html">
+        <span><img src="./Images/smtei.png" alt="" class="brand-mark"></span>
+        <span class="brand-text">
+          <strong>SMTEI Cavite</strong>
+          <span class="brand-sub">Assessment & Training Center</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navMenu">
+        Menu
+      </button>
+
+      <div class="nav-menu" id="navMenu">
+        <a href="./index.html#programs">Programs</a>
+        <a href="./index.html#schedules">Schedules</a>
+        <a href="./index.html#about">About</a>
+        <a href="./index.html#contact">Contact</a>
+        <a href="./profile.html">Profile</a>
+
+        <div class="nav-ctas">
+          <div class="auth-buttons" id="authButtons">
+            <button class="btn btn-outline auth-btn" id="signInBtn" style="display: none;">
+              <span class="btn-icon">👤</span>
+              Sign In
+            </button>
+            <button type="button" class="btn btn-primary auth-btn" id="signOutBtn" style="display: none;">
+              Sign Out
+            </button>
+            <button class="profile-btn" id="profileBtn" title="User Profile" style="display: none;">
+              <div class="profile-avatar-small" id="navAvatarContainer">
+                <span id="navAvatar">👤</span>
+              </div>
+            </button>
+          </div>
+          <a class="btn btn-outline" href="./inquiry.html">Company Inquiry</a>
+          <a class="btn btn-primary" href="./apply.html">Apply</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="section form-section">
+      <div class="container form-container">
+        <div class="form-header-section">
+          <h1>Candidate Application Form</h1>
+          <p class="lead">Submit your requirements as a candidate. Please fill out all required fields.</p>
+        </div>
+
+        <form class="requirements-form" id="candidateForm" method="POST" enctype="multipart/form-data">
+          <!-- Complete Name -->
+          <div class="form-group">
+            <label for="completeName" class="form-label">
+              Complete Name
+              <span class="required">*</span>
+            </label>
+            <input
+              type="text"
+              id="completeName"
+              name="completeName"
+              class="form-input"
+              placeholder="Enter your full name"
+              required
+              aria-required="true"
+            />
+          </div>
+
+          <!-- Email Address -->
+          <div class="form-group">
+            <label for="emailAddress" class="form-label">
+              Email Address
+              <span class="required">*</span>
+            </label>
+            <input
+              type="email"
+              id="emailAddress"
+              name="emailAddress"
+              class="form-input"
+              placeholder="Enter your email address"
+              required
+              aria-required="true"
+            />
+          </div>
+
+          <!-- Phone Number -->
+          <div class="form-group">
+            <label for="phoneNumber" class="form-label">
+              Phone Number
+              <span class="required">*</span>
+            </label>
+            <input
+              type="tel"
+              id="phoneNumber"
+              name="phoneNumber"
+              class="form-input"
+              placeholder="Enter your phone number (e.g., +63 9XX XXXX XXX)"
+              pattern="[0-9+\s\-\(\)]+"
+              required
+              aria-required="true"
+            />
+          </div>
+
+          <!-- Qualification Applied For -->
+          <div class="form-group">
+            <label for="qualification" class="form-label">
+              Qualification Applied For
+              <span class="required">*</span>
+            </label>
+            <select
+              id="qualification"
+              name="qualification"
+              class="form-input form-select"
+              required
+              aria-required="true"
+            >
+              <option value="">— Select a qualification —</option>
+              <option value="ATS_NC_I">Automotive Servicing NC I</option>
+              <option value="ATS_NC_II">Automotive Servicing NC II</option>
+              <option value="EIM_NC_II">Electrical Installation and Maintenance NC II</option>
+              <option value="SMAW_NC_I">Shielded Metal Arc Welding (SMAW) NC I</option>
+              <option value="SMAW_NC_II">Shielded Metal Arc Welding (SMAW) NC II</option>
+              <option value="MCG_NC_II">Machining NC II</option>
+              <option value="CNC_LATHE_NC_II">CNC Lathe Machine Operation NC II</option>
+              <option value="CNC_MILLING_NC_II">CNC Milling Machine Operation NC II</option>
+              <option value="COK_NC_II">Cookery NC II</option>
+              <option value="MEC_NC_II">Mechatronics Servicing NC II</option>
+              <option value="TEC_NC_II">Technical Drafting NC II</option>
+              <option value="BPP_NC_II">Bread and Pastry Production NC II</option>
+              <option value="DRV_NC_II">Driving NC II</option>
+              <option value="BRT_NC_II">Barista NC II</option>
+              <option value="VGD_NC_III">Visual Graphic Design NC III</option>
+            </select>
+          </div>
+
+          <!-- COC Title (Conditional) -->
+          <div class="form-group" id="cocGroup" style="display: none;">
+            <label for="cocTitle" class="form-label">
+              Certificate of Competency (COC) Title
+              <span class="required">*</span>
+            </label>
+            <input
+              type="text"
+              id="cocTitle"
+              name="cocTitle"
+              class="form-input"
+              placeholder="Enter your COC title"
+              aria-label="Certificate of Competency title"
+            />
+            <p class="form-hint">Required for Technical Drafting qualification</p>
+          </div>
+
+          <!-- File Attachments -->
+          <div class="form-group">
+            <label for="fileAttachments" class="form-label">
+              Requirements Folder
+              <span class="required">*</span>
+            </label>
+            <div class="file-input-wrapper">
+              <input
+                type="file"
+                id="fileAttachments"
+                name="fileAttachments"
+                class="file-input"
+                webkitdirectory
+                directory
+                multiple
+                required
+                aria-required="true"
+              />
+              <label for="fileAttachments" class="file-input-label">
+                <span class="file-input-icon">📁</span>
+                <span class="file-input-text">
+                  <strong>Click to select folder</strong>
+                </span>
+                <span class="file-input-hint">Select a folder containing all your requirement files</span>
+              </label>
+            </div>
+            <p class="form-hint">Upload a folder containing all your required documents (PDF, DOC, DOCX, JPG, PNG, TXT)</p>
+            <div id="fileList" class="file-list"></div>
+          </div>
+
+          <!-- Submit and Reset Buttons -->
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary btn-large">Submit Application</button>
+            <button type="reset" class="btn btn-outline btn-large">Clear Form</button>
+          </div>
+
+          <!-- Success Message (Hidden by default) -->
+          <div id="successMessage" class="success-message" style="display: none;">
+            <p>✓ Your application has been submitted successfully. We will review your requirements and contact you soon.</p>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script type="module">
+    import { submitApplication, getMe } from './js/api.js';
+
+    const form = document.getElementById('candidateForm');
+
+    // Check if user is logged in before allowing submission
+    async function checkAuth() {
+      try {
+        const token = localStorage.getItem('token');
+        if (!token) {
+          alert('Please sign in first to submit an application.');
+          window.location.href = './signin.html';
+          return false;
+        }
+        // Verify token is still valid by calling getMe
+        await getMe();
+        return true;
+      } catch (err) {
+        alert('Your session has expired. Please sign in again.');
+        localStorage.removeItem('token');
+        window.location.href = './signin.html';
+        return false;
+      }
+    }
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+
+      // Check authentication before proceeding
+      const isAuth = await checkAuth();
+      if (!isAuth) return;
+
+      const successMessage = document.getElementById('successMessage');
+      const formData = new FormData(form);
+      const obj = Object.fromEntries(formData.entries());
+      // files input produces fake path entries; skip for now or handle separately
+      try {
+        await submitApplication({
+          completeName: obj.completeName,
+          email: obj.emailAddress,
+          phone: obj.phoneNumber,
+          qualification: obj.qualification,
+          cocTitle: obj.cocTitle || null,
+          // any file handling should be uploaded separately
+          files: []
+        });
+        successMessage.style.display = 'block';
+        form.reset();
+      } catch (err) {
+        alert('Error submitting application: ' + err.message);
+      }
+    });
+  </script>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2024 SMTEI Cavite. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Handle conditional COC Title field visibility
+    const qualificationSelect = document.getElementById('qualification');
+    const cocGroup = document.getElementById('cocGroup');
+    const cocTitleInput = document.getElementById('cocTitle');
+
+    qualificationSelect.addEventListener('change', function() {
+      if (this.value === 'TEC_NC_II') {
+        cocGroup.style.display = 'block';
+        cocTitleInput.required = true;
+      } else {
+        cocGroup.style.display = 'none';
+        cocTitleInput.required = false;
+        cocTitleInput.value = '';
+      }
+    });
+
+    // Handle file input and display selected files from folder
+    const fileInput = document.getElementById('fileAttachments');
+    const fileList = document.getElementById('fileList');
+
+    fileInput.addEventListener('change', function() {
+      fileList.innerHTML = '';
+      if (this.files.length > 0) {
+        const list = document.createElement('ul');
+        list.className = 'file-list-items';
+        let totalSize = 0;
+        
+        Array.from(this.files).forEach((file, index) => {
+          const fileSize = file.size / 1024; // in KB
+          totalSize += fileSize;
+          
+          const li = document.createElement('li');
+          li.className = 'file-list-item';
+          li.innerHTML = `
+            <span class="file-name">${file.webkitRelativePath || file.name}</span>
+            <span class="file-size">(${fileSize.toFixed(2)} KB)</span>
+            <button type="button" class="file-remove" data-file-index="${index}" aria-label="Remove file">×</button>
+          `;
+          list.appendChild(li);
+        });
+
+        // Add folder summary
+        const summaryLi = document.createElement('li');
+        summaryLi.className = 'file-list-summary';
+        summaryLi.innerHTML = `
+          <strong>✓ Folder selected with ${this.files.length} file(s)</strong>
+          <span class="folder-total-size">Total size: ${(totalSize / 1024).toFixed(2)} MB</span>
+        `;
+        list.insertBefore(summaryLi, list.firstChild);
+
+        fileList.appendChild(list);
+
+        // Add remove file functionality
+        document.querySelectorAll('.file-remove').forEach(btn => {
+          btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const dt = new DataTransfer();
+            Array.from(fileInput.files).forEach((file, i) => {
+              if (i !== parseInt(this.dataset.fileIndex)) {
+                dt.items.add(file);
+              }
+            });
+            fileInput.files = dt.files;
+            fileInput.dispatchEvent(new Event('change', { bubbles: true }));
+          });
+        });
+      }
+    });
+
+    // Drag and drop functionality
+    const fileInputWrapper = document.querySelector('.file-input-wrapper');
+    
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+      fileInputWrapper.addEventListener(eventName, preventDefaults, false);
+    });
+
+    function preventDefaults(e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
+    ['dragenter', 'dragover'].forEach(eventName => {
+      fileInputWrapper.addEventListener(eventName, highlight, false);
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+      fileInputWrapper.addEventListener(eventName, unhighlight, false);
+    });
+
+    function highlight(e) {
+      fileInputWrapper.classList.add('highlight');
+    }
+
+    function unhighlight(e) {
+      fileInputWrapper.classList.remove('highlight');
+    }
+
+    fileInputWrapper.addEventListener('drop', handleDrop, false);
+
+    function handleDrop(e) {
+      const dt = e.dataTransfer;
+      const files = dt.files;
+      fileInput.files = files;
+      fileInput.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+
+    // Form submission
+    document.getElementById('candidateForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // In a real application, you would send the form data to your backend
+      // For now, we'll just show a success message
+      const successMessage = document.getElementById('successMessage');
+      successMessage.style.display = 'block';
+      
+      // Scroll to success message
+      successMessage.scrollIntoView({ behavior: 'smooth' });
+      
+      // Reset success message after 5 seconds
+      setTimeout(() => {
+        successMessage.style.display = 'none';
+      }, 5000);
+
+      // In production, uncomment this to actually submit:
+      // this.submit();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SMTEI Cavite — Assessment & Training Center</title>
+
+  <!-- Fonts (example pairing) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="nav container" aria-label="Primary">
+      <a class="brand" href="./index.html">
+        <!-- Replace with actual logo image -->
+        <span><img src="./Images/smtei.png" alt="" class="brand-mark"></span>
+        <span class="brand-text">
+          <strong>SMTEI Cavite</strong>
+          <span class="brand-sub">Assessment & Training Center</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navMenu">
+        Menu
+      </button>
+
+      <div class="nav-menu" id="navMenu">
+        <a href="#programs">Programs</a>
+        <a href="#schedules">Schedules</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+
+        <div class="nav-ctas">
+          <a class="btn btn-outline" href="./inquiry.html">Company Inquiry</a>
+          <a class="btn btn-primary" href="./apply.html">Apply</a>
+          
+          <!-- Authentication buttons -->
+          <div class="auth-buttons" id="authButtons">
+            <button class="btn btn-outline auth-btn" id="signInBtn" style="display: none;">
+              <span class="btn-icon" a he>👤</span>
+              Sign In
+            </button>
+            <button type="button" class="btn btn-primary auth-btn" id="signOutBtn" style="display: none;">
+              Sign Out
+            </button>
+            <button class="profile-btn" id="profileBtn" title="User Profile" style="display: none;">
+              <div class="profile-avatar-small" id="navAvatarContainer">
+                <a href="./profile.html" id="navAvatar">👤</a>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <h1>Assessment & Training Center</h1>
+          <p class="lead">
+            Empowering technical skills through competency-based training and assessment aligned to industry needs.
+          </p>
+
+          <div class="hero-ctas">
+            <a class="btn btn-primary" href="./apply.html">Apply as Trainee/Applicant</a>
+            <a class="btn btn-outline" href="./inquiry.html">Inquire as Company/Institution</a>
+          </div>
+
+          <ul class="trust-row" aria-label="Trust highlights">
+            <li>TESDA-aligned</li>
+            <li>Competency-based</li>
+            <li>Industry-ready</li>
+          </ul>
+        </div>
+
+        <div class="hero-card" role="img" aria-label="Campus or training photo placeholder">
+          <div class="hero-card-inner">
+            <p class="muted">Image/illustration placeholder</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="highlights">
+      <div class="container grid-4">
+        <div class="card">
+          <p class="kicker">Founded</p>
+          <p class="stat">2008</p>
+        </div>
+        <div class="card">
+          <p class="kicker">Programs</p>
+          <p class="stat">12+</p>
+        </div>
+        <div class="card">
+          <p class="kicker">Partner Institutions</p>
+          <p class="stat">30+</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="programs">
+      <div class="container">
+        <header class="section-head">
+          <h2>Programs & Services</h2>
+          <p class="muted">Explore skills assessment, technical-vocational training, and specialized short courses.</p>
+        </header>
+
+        <div class="grid-3">
+          <article class="card">
+            <h3>Assessment Center</h3>
+            <p>Competency-based evaluation for national certification readiness.</p>
+            <a class="text-link" href="./schedules.html">View dashboard</a>
+          </article>
+
+          <article class="card">
+            <h3>Technical-Vocational Training</h3>
+            <p>Structured training batches designed for practical, job-ready outcomes.</p>
+            <a class="text-link" href="./programs.html">Browse training programs</a>
+          </article>
+
+          <article class="card">
+            <h3>Short Courses</h3>
+            <p>Specialized modules for upskilling and targeted competency development.</p>
+            <a class="text-link" href="./programs.html">See short courses</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="schedules">
+      <div class="container">
+        <header class="section-head">
+          <h2>Program Categories</h2>
+          <p class="muted">Choose a category to explore available qualifications and schedules.</p>
+        </header>
+
+        <div class="grid-4">
+          <a class="card card-link" href="./programs.html?category=ICT">
+            <h3>ICT</h3>
+            <p class="muted">Placeholder</p>
+          </a>
+          <a class="card card-link" href="./programs.html?category=Electronics">
+            <h3>Electronics</h3>
+            <p class="muted">Placeholder</p>
+          </a>
+          <a class="card card-link" href="./programs.html?category=Automotive">
+            <h3>Automotive</h3>
+            <p class="muted">Placeholder</p>
+          </a>
+          <a class="card card-link" href="./programs.html?category=Electrical">
+            <h3>Electrical</h3>
+            <p class="muted">Placeholder</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-strip" id="contact">
+      <div class="container cta-strip-inner">
+        <div>
+          <h2>Ready to apply or schedule an assessment?</h2>
+          <p class="muted">View requirements, upcoming schedules, and submit your application online.</p>
+        </div>
+        <div class="cta-actions">
+          <a class="btn btn-outline" href="./contact.html">Contact the Center</a>
+          <a class="btn btn-primary" href="./schedules.html">View Requirements & Schedules</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <p><strong>SMTEI Cavite</strong></p>
+        <p class="muted">Address placeholder</p>
+      </div>
+      <div>
+        <p><strong>Contact</strong></p>
+        <p class="muted">Phone / Email placeholders</p>
+      </div>
+      <div>
+        <p><strong>Links</strong></p>
+        <p class="muted">Programs • Schedules • About</p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="./app.js"></script>
+  
+  <!-- Authentication handling -->
+  <script type="module">
+    import { watchAuthState, getUserProfile, signOutUser } from './js/firebase-auth.js';
+
+    let currentUser = null;
+    let userProfile = null;
+
+    // Handle authentication state changes
+    watchAuthState(async (user) => {
+      currentUser = user;
+      
+      const signInBtn = document.getElementById('signInBtn');
+      const signOutBtn = document.getElementById('signOutBtn');
+      const profileBtn = document.getElementById('profileBtn');
+      const navAvatar = document.getElementById('navAvatar');
+
+      if (user) {
+        // User is signed in
+        signInBtn.style.display = 'none';
+        signOutBtn.style.display = 'inline-flex';
+        profileBtn.style.display = 'flex';
+
+        // Get user profile for avatar
+        userProfile = await getUserProfile(user.uid);
+        const navAvatarContainer = document.getElementById('navAvatarContainer');
+        const navAvatar = document.getElementById('navAvatar');
+        
+        if (userProfile && userProfile.profilePicture) {
+          navAvatarContainer.style.backgroundImage = `url(${userProfile.profilePicture})`;
+          navAvatarContainer.style.backgroundSize = 'cover';
+          navAvatarContainer.style.backgroundPosition = 'center';
+          navAvatar.style.display = 'none';
+        } else {
+          const fullName = userProfile?.fullName || user.email || 'User';
+          const initials = fullName.split(' ').map(n => n[0]).join('').toUpperCase();
+          navAvatar.textContent = initials;
+          navAvatar.style.display = 'block';
+          navAvatarContainer.style.backgroundImage = 'none';
+        }
+      } else {
+        // User is signed out
+        signInBtn.style.display = 'inline-flex';
+        signOutBtn.style.display = 'none';
+        profileBtn.style.display = 'none';
+        userProfile = null;
+      }
+    });
+
+    // Sign in button handler
+    document.getElementById('signInBtn').addEventListener('click', () => {
+      window.location.href = './signin.html';
+    });
+
+    // Sign out button handler
+    document.getElementById('signOutBtn').addEventListener('click', async () => {
+      if (confirm('Are you sure you want to sign out?')) {
+        const result = await signOutUser();
+        if (result.success) {
+          // Optional: Show success message or redirect
+          console.log('Signed out successfully');
+        }
+      }
+    });
+
+    // Profile button handler
+    document.getElementById('profileBtn').addEventListener('click', () => {
+      window.location.href = './profile.html';
+    });
+  </script>
+</body>
+</html>
