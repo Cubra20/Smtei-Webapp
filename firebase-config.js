@@ -8,12 +8,13 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 // Replace with your Firebase project configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCbc737DcuEEz8D2y29uDjaTubq-zUXbmU",
-  authDomain: "smtei-cavite.firebaseapp.com",
-  projectId: "smtei-cavite",
-  storageBucket: "smtei-cavite.firebasestorage.app",
-  messagingSenderId: "171203704758",
-  appId: "1:171203704758:web:91d8e88e23f7a2055bf317"
+  apiKey: "AIzaSyCjvHUD8Tq9jUwBBBU0pUMd4NW2Cqz6Kg8",
+  authDomain: "smtei-cavite-24534.firebaseapp.com",
+  projectId: "smtei-cavite-24534",
+  storageBucket: "smtei-cavite-24534.firebasestorage.app",
+  messagingSenderId: "17437925207",
+  appId: "1:17437925207:web:cf73f96235736a4524e812",
+  measurementId: "G-PN4E4NCN1V"
 };
 
 // Initialize Firebase
@@ -26,4 +27,5 @@ const analytics = getAnalytics(app);
 auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 
 export { auth, db, storage, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, updateEmail, reauthenticateWithCredential, EmailAuthProvider, collection, addDoc, query, where, getDocs, updateDoc, doc, onSnapshot, ref, uploadBytes, getDownloadURL, deleteObject };
+
 
