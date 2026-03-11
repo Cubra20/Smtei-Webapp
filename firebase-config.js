@@ -4,7 +4,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, updateEmail, reauthenticateWithCredential, EmailAuthProvider } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
 import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-storage.js";
-
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
 // Replace with your Firebase project configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCbc737DcuEEz8D2y29uDjaTubq-zUXbmU",
@@ -20,8 +21,9 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 const storage = getStorage(app);
-
+const analytics = getAnalytics(app);
 // Set up auth state persistence
 auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 
 export { auth, db, storage, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, updateEmail, reauthenticateWithCredential, EmailAuthProvider, collection, addDoc, query, where, getDocs, updateDoc, doc, onSnapshot, ref, uploadBytes, getDownloadURL, deleteObject };
+
